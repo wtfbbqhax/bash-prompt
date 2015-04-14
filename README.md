@@ -12,6 +12,12 @@ Forked from [a gist by gf3][sexy-bash-orig].
 
 [sexy-bash-orig]: https://gist.github.com/gf3/306785/a35d28b6bdd0f7c54318cce510738438f04dabaa
 
+### Do you like `sexy-bash-prompt`?
+[Support us via gratipay][gratipay] or [spread word on Twitter][twitter]
+
+[gratipay]: https://gratipay.com/sexybashprompt/
+[twitter]: https://twitter.com/intent/tweet?text=Bash%20prompt%20with%20colors%2C%20git%20statuses%2C%20and%20git%20branches&url=https%3A%2F%2Fgithub.com%2Ftwolfson%2Fsexy-bash-prompt&via=sexybashprompt
+
 ## Installation
 One line install:
 
@@ -100,6 +106,8 @@ Similarly, symbols can be customized with the following environment variables:
 - `PROMPT_DIRTY_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `▼`)
 - `PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `⬡`)
 - `PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty, unpushed, and unpulled branch (e.g. `⬢`)
+- `PROMPT_SYMBOL` - Symbol given after each prompt (e.g. `$`)
+    - By default, this is `$` for normal users and `#` for root
 
 ```bash
 # Inside your `.bashrc` or `.bash_profile`
@@ -109,19 +117,25 @@ source ~/.bash_prompt
 
 ![Symbol overridden prompt](docs/symbol_override.png)
 
+#### Compatibility
+In some situations, the default symbol set can be drawn incorrectly (e.g. as diamonds). To remedy that, a simpler set of symbols can be used:
+
+```bash
+PROMPT_SYNCED_SYMBOL=""
+PROMPT_DIRTY_SYNCED_SYMBOL="*"
+PROMPT_UNPUSHED_SYMBOL="↑"
+PROMPT_DIRTY_UNPUSHED_SYMBOL="*↑"
+PROMPT_UNPULLED_SYMBOL="↓"
+PROMPT_DIRTY_UNPULLED_SYMBOL="*↓"
+PROMPT_UNPUSHED_UNPULLED_SYMBOL="*↑↓"
+PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL="*↑↓"
+```
+
 ## How does it work?
 [bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
 
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
-
-## Donating
-Support this project and [others by twolfson][gittip] via [gittip][].
-
-[![Support via Gittip][gittip-badge]][gittip]
-
-[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
-[gittip]: https://www.gittip.com/twolfson/
 
 ## Support
 Linux and Mac OSX are supported platforms.
